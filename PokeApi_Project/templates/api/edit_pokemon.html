@@ -1,0 +1,17 @@
+{% extends 'index.html' %} 
+{% block titulo %} 
+    Edicion de pokemon
+{% endblock titulo %} 
+{% block body %} 
+<from method="POST">
+    {% csrf_token %}
+    {% if error %} 
+    <h2>{{ error }}</h2>
+    {% else %}
+        {{ pokemon_form.as_p }}
+    <button type = 'submit'>Crear</button>
+</from>
+<a href="{% url 'api:delete_pokemon' pokemon.id %}"><br> <br> Eliminar Pokemon</a>
+{% endif %}
+
+{% endblock body %} 
