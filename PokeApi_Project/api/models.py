@@ -1,18 +1,21 @@
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import * # MinValueValidator, MaxValueValidator. * indica todos
+
 
 # Create your models here.
 
-class Pokemon(models.Model):
-    nombre=models.CharField(max_length=50)
-    tipo=models.CharField(max_length=50)
-    naturaleza=models.CharField(max_length=50)
-    peso=models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(100)])
-    ataque=models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(100)])
+class Pokemon(models.Model): 
+    # Probando los verbose name en cada campo. Producen efecto dentro del panel de administracion. Por default son los propios nombres de cada campo.
+    nombre=models.CharField("Nombre del pokemon",max_length=50)
+    tipo=models.CharField("Tipo de pokemon", max_length=50)
+    naturaleza=models.CharField("Naturaleza del pokemon", max_length=50)
+    peso=models.IntegerField("Peso del pokemon", validators=[MinValueValidator(1), MaxValueValidator(100)])
+    ataque=models.IntegerField("Ataque maximo del pokemon", validators=[MinValueValidator(1),MaxValueValidator(100)])
 
     class Meta:
         verbose_name="Pokemon"
         ordering = ["nombre"]
         verbose_name_plural ="Pokemones"
+
     def __str__(self):
         return self.nombre

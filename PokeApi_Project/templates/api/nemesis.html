@@ -3,7 +3,11 @@
     Pokemon nemesis
 {% endblock titulo %} 
 {% block body %} 
-<h2>Listado de pokemones con naturaleza: {{naturaleza}}</h2>
+{% if error %}
+    <h2>{{error}}</h2>
+{% else %}
+{% if pokemones %}
+<h2>Listado de pokemones fuertes contra el tipo: {{tipos}}</h2>
         <table>
             <thead>
                 <tr>
@@ -29,7 +33,9 @@
     {% endfor %}
     </tbody>
         </table>
+        {% else %}
+            <h2>No hay pokemones registrados que sean fuertes contra el tipo: {{tipos}}</h2>
+{% endif %}
+{% endif %}
 {% endblock body %}
-    
-
  
